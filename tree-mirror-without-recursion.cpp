@@ -33,7 +33,7 @@ class MyTree{
             parentNode->rChild = childNode;
         }
 
-        void mirrorTree(){
+        void mirrorTreeUsingRecursion(){
             mirrorNodes(root);
         }
 
@@ -190,7 +190,7 @@ int main(int argc, char *argv[]){
     cout<<"Original tree in BFS is ";
     tree->printTree();
     cout<<endl;
-    tree->mirrorTree();
+    tree->mirrorTreeUsingRecursion();
     cout<<"Mirrored tree in BFS is ";
     tree->printTree();
     cout<<endl;
