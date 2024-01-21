@@ -1,5 +1,6 @@
-import queue
-
+'''
+Mirror of a given tree
+'''
 class TreeNode:
     def __init__(self, val):
         self.lChild = None
@@ -66,7 +67,7 @@ class MyTree:
 
 
 if(__name__ == "__main__"):
-    n = 4
+    n = 5
     t = MyTree(n)
     root = t.createTree(n)
     print("Original tree is:")
