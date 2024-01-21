@@ -4,6 +4,12 @@
 /*
 g++ -lpthread multithread.cpp
 */
+/*
+TODO:
+1. Fix starvation issue
+2. Make single entry function 
+*/
+
 using namespace std;
 int snumEven=2;
 int snumOdd=1;
