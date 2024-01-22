@@ -13,15 +13,21 @@ TODO:
 using namespace std;
 class PubSub;
 
+/*
+Consumer class
+*/
 class Consumer{
     public:
         Consumer(PubSub *pubsub);
-        void callback(string str);
-        void subscribe();
+        void callback(string str);//callback function
+        void subscribe(); // subscribe to pubsub
     private:
-        PubSub *pubsub;
+        PubSub *pubsub;//pubsub handler
 };
 
+/*
+Pub sub class
+*/
 class PubSub{
     public:
     PubSub(){
@@ -63,6 +69,9 @@ void Consumer::callback(string str){
     cout<<str<<"\t";
 }
 
+/*
+    Producer class
+*/
 class Producer{
     public:
         Producer(PubSub *pubsub){
@@ -75,7 +84,7 @@ class Producer{
         }
 
     private:
-        PubSub *pubsub;
+        PubSub *pubsub;//pubsub handler
 };
 
 int main(){
