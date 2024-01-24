@@ -49,17 +49,10 @@ def longest_substr_with_k_distinct_chars(in_str, k):
         curr_max = MaxSub(start_index=start_index, end_index=curr_index-1) #store curr max                 
     return curr_max
 
-def test():
-    my_dict = {"a":1, "b":2}
-    print(len(my_dict))
-    my_dict.pop("a")
-    print(len(my_dict))
-    return
 if(__name__ == "__main__"):
     in_strs = ["aabacbebebe", "aaaa", "eceba"]
     k = 2
-    #test()
     for in_str in in_strs:
         res = longest_substr_with_k_distinct_chars(in_str=in_str, k=k)
-        print("string="+ in_str, " substr len="+str(res.len), " start="+str(res.start_index), " end="+ str(res.end_index) )
+        print("string="+ in_str, " k= "+str(k), " substr len="+str(res.len), " start="+str(res.start_index), " end="+ str(res.end_index) )
 
