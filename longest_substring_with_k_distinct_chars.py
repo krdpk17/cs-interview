@@ -14,7 +14,7 @@ class MaxSub:
         self.end_index = end_index
         self.len = end_index - start_index + 1
 
-def longest_substr_with_k_distinct_chars(in_str, k):
+def longest_substr_with_k_distinct_chars(in_str, k, exact_match = False):
     chars_found = {}
     curr_index = 0
     start_index = 0
@@ -52,7 +52,11 @@ def longest_substr_with_k_distinct_chars(in_str, k):
     #finally adjust the max substring
     curr_len = curr_index - start_index
     if(curr_len > curr_max.len):
-        curr_max = MaxSub(start_index=start_index, end_index=curr_index-1) #store curr max                 
+        curr_max = MaxSub(start_index=start_index, end_index=curr_index-1) #store curr max 
+
+    if(exact_match == True and len(chars_found) < k):
+        #if exact match needed, then check the characters count
+        curr_max = MaxSub(start_index=-1, end_index=-3)          
     return curr_max
 
 if(__name__ == "__main__"):
@@ -60,5 +64,8 @@ if(__name__ == "__main__"):
     k = 2
     for in_str in in_strs:
         res = longest_substr_with_k_distinct_chars(in_str=in_str, k=k)
-        print("string="+ in_str, " k= "+str(k), " substr len="+str(res.len), " start="+str(res.start_index), " end="+ str(res.end_index) )
+        print("string="+ in_str, " k <= "+str(k), " substr len="+str(res.len), " start="+str(res.start_index), " end="+ str(res.end_index) )
 
+    for in_str in in_strs:
+        res = longest_substr_with_k_distinct_chars(in_str=in_str, k=k, exact_match=True)
+        print("string="+ in_str, " k= "+str(k), " substr len="+str(res.len), " start="+str(res.start_index), " end="+ str(res.end_index) )
