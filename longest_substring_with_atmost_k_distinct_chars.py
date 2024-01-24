@@ -2,6 +2,12 @@
 Given a string you need to print the size of the longest possible substring that has atmost K unique characters. If there is no possible substring then print -1.
 Leetcode reference https://leetcode.ca/all/340.html
 '''
+
+'''
+Complexity
+Time - O(n) where n is the string length. Note each character is touched atmost twice
+Space - O(1) since number of chars are fixed and so, dict will have worst case constant size 
+'''
 class MaxSub:
     def __init__(self, start_index, end_index):
         self.start_index = start_index
