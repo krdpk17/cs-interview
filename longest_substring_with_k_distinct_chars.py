@@ -8,6 +8,11 @@ Complexity
 Time - O(n) where n is the string length. Note each character is touched atmost twice
 Space - O(1) since number of chars are fixed and so, dict will have worst case constant size 
 '''
+
+'''
+Fruits in basket- Question is similar problem with k=2.
+Leetcode submission link is https://leetcode.com/problems/fruit-into-baskets/submissions/1155365143/
+'''
 class MaxSub:
     def __init__(self, start_index, end_index):
         self.start_index = start_index
