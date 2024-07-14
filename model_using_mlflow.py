@@ -1,7 +1,8 @@
 ''''
 Pre-requisite
 1. pip install mlflow
-2. mlflow server -> For viewing mlflow UI.. http://localhost:5000/
+2. mlflow server -> For viewing mlflow UI..
+    Load http://localhost:5000/
 
 '''
 import mlflow
