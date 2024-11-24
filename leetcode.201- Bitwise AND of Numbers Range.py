@@ -1,10 +1,9 @@
 '''
-Time Limit Exceeded
-8265 / 8271 testcases passed
+I submitted as https://leetcode.com/problems/bitwise-and-of-numbers-range/solutions/6078324/solution-for-201-bitwise-and-of-numbers-range-constant-order/
 '''
 
 class Solution:
-    def get_closet_successor_multiple(self, multiple, val):
+    def get_closet_successor_multiple_deleteme(self, multiple, val):
         prev_val = next_val = multiple
         if(multiple == 1):
             return val + 1
@@ -12,6 +11,13 @@ class Solution:
             prev_val = next_val
             next_val = next_val + multiple
         return next_val
+    def get_closet_successor_multiple(self, multiple, val):
+        quotient = int(val / multiple)
+        quotient = quotient + 1
+        res = multiple * quotient
+        #print(quotient, multiple, val, res)
+        return res
+
     def reverse_num(self, num, count):
         index = 1
         res = 0
@@ -35,7 +41,7 @@ class Solution:
             #next_val = jump
             if(rightmostbit):
                 closet_successor = self.get_closet_successor_multiple(jump, left)
-                print(jump, rightmostbit, temp, '-', jump, closet_successor)
+                #print(jump, rightmostbit, temp, '-', jump, closet_successor)
                 if(closet_successor <= right):
                     bit_val = 0
                 else:
@@ -48,3 +54,10 @@ class Solution:
         result = self.reverse_num(result, count)
         print(result)
         return result
+                
+
+
+
+
+
+        
