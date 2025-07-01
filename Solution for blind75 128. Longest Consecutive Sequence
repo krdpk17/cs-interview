@@ -1,0 +1,98 @@
+# Time-out at 75/81 test cases
+# https://leetcode.com/problems/longest-consecutive-sequence/description/?envType=problem-list-v2&envId=oizxjoit
+class Solution:
+    def prepare_hash_map2(self, nums):
+        hash_map = {}
+        size = len(nums)
+        i = 0
+        while i < size:
+            num = nums[i]
+            if(num not in hash_map):
+                hash_map[num] = [0, None]
+            hash_map[num][0] = 1
+            #add link
+            adj_num = num + 1
+            if(adj_num in hash_map):
+                hash_map[num][1] = adj_num
+
+            adj_num = num - 1
+            if(adj_num in hash_map):
+                hash_map[adj_num][1] = num
+
+            i += 1
+        #print(hash_map)
+        return hash_map
+
+    def prepare_hash_map(self, nums):
+        hash_map = {}
+        size = len(nums)
+        i = 0
+        while i < size:
+            num = nums[i]
+            if(num in hash_map):
+                i += 1
+                continue
+            
+            hash_map[num] = [1, None, 1]
+            #add link
+            adj_num = num + 1
+            if(adj_num in hash_map):
+                hash_map[num][1] = adj_num
+                hash_map[num][2] += hash_map[adj_num][2]
+
+            adj_num = num - 1
+            while(adj_num in hash_map):
+                hash_map[adj_num][1] = num
+                hash_map[adj_num][2] += hash_map[num][2]
+                adj_num -= 1
+
+            i += 1
+        print(hash_map)
+        return hash_map
+
+    def get_max_cons_len(self, nums, hash_map):
+        size = len(hash_map)
+        print(size)
+        i = 0
+        visited = []
+        curr_cons_len = 0
+        max_cons_len = 0
+        for key, val in hash_map.items():
+            curr_cons_len = hash_map[key][2]
+            if(max_cons_len < curr_cons_len):
+                max_cons_len = curr_cons_len
+            #print(visited, curr_cons_len, max_cons_len)
+        return max_cons_len
+
+
+    def get_max_cons_len2(self, nums, hash_map):
+        size = len(hash_map)
+        print(size)
+        i = 0
+        visited = []
+        curr_cons_len = 0
+        max_cons_len = 0
+        for key, val in hash_map.items():
+            curr_cons_len = 0
+            if(key not in visited):
+                curr_cons_len += hash_map[key][0]
+                visited.append(key)
+                next_key = hash_map[key][1]
+                while(next_key is not None):
+                    curr_cons_len += hash_map[next_key][0]
+                    next_key = hash_map[next_key][1]
+                if(curr_cons_len > max_cons_len):
+                    max_cons_len = curr_cons_len
+                #print(visited, curr_cons_len, max_cons_len)
+        return max_cons_len
+
+
+    def longestConsecutive(self, nums: List[int]) -> int:
+        hash_map = self.prepare_hash_map(nums)
+        #get consecutive list
+        #hash_map_sorted = dict(sorted(hash_map.items()))
+        max_cons_len = self.get_max_cons_len(nums, hash_map)
+        return max_cons_len
+
+            
+            
