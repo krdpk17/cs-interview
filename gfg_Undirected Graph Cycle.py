@@ -71,22 +71,30 @@ def main():
         V = 4
         edges = [(0, 1), (0, 2), (1, 2), (2, 3)]
         solution = Solution()
-        print(solution.isCycle(V, edges))
+        expected = True
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
 
         V = 5
         edges = [(0, 4), (1, 2), (1, 4), (2, 3), (3, 4)]
         solution = Solution()
-        print(solution.isCycle(V, edges))
+        expected = True
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
 
         V = 5
         edges = [(0, 4), (1, 2), (1, 4), (2, 3)]
         solution = Solution()
-        print(solution.isCycle(V, edges))
+        expected = False
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
 
         V = 5
         edges = [(1, 2), (2, 3)]
         solution = Solution()
-        print(solution.isCycle(V, edges))
+        expected = False
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
 
 if __name__ == "__main__":
     main()
