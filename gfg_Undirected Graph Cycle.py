@@ -96,5 +96,26 @@ def main():
         actual = solution.isCycle(V, edges)
         print("expected:", expected, "actual:", actual)
 
+        V = 3
+        edges = [(0, 2), (1, 2)]
+        solution = Solution()
+        expected = False
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
+
+        V = 3
+        edges = [(0,1), (0, 2), (1, 2)]
+        solution = Solution()
+        expected = True
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
+
+        V = 5
+        edges = [(0,1), (0, 2), (1, 2)]
+        solution = Solution()
+        expected = True
+        actual = solution.isCycle(V, edges)
+        print("expected:", expected, "actual:", actual)
+
 if __name__ == "__main__":
     main()
