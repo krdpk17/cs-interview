@@ -25,10 +25,10 @@ class Solution:
         #print(i,k)
         word = s[s_index:(e_index + 1)]
         #print(word)
-        if(matrix[i][k] == 1):
-            return True
+        if(matrix[i][k] != 0):
+            return matrix[i][k]
         if(word in wordDict):
-            matrix[i][k] = 1
+            matrix[i][k] = True
             #print(i, j, k, matrix[i][k])
             return True
 
@@ -40,9 +40,10 @@ class Solution:
             j += 1
             status = self.wordbreak_with_split(s, wordDict, j, k, size, matrix)
             if(status == True):
-                matrix[i][k] = 1
+                matrix[i][k] = True
                 #print(i, j, k, matrix[i][k])
                 return True
+        matrix[i][k] = False
         return False
             
 
