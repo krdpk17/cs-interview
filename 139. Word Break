@@ -1,0 +1,64 @@
+# Approach failed at 35/47 test cases.. Need optimization
+# Tried 2 approaches, but both failed
+# https://leetcode.com/problems/word-break/description/?envType=problem-list-v2&envId=oizxjoit
+class Solution:
+    def wordbreak_with_start_index(self, s, wordDict, s_index, size):
+        if(s_index >= size):
+            return True
+        i = s_index
+        word = ""
+        while(i < size):
+            word += s[i]
+            if(word in wordDict):
+                if(self.wordbreak_with_start_index(s, wordDict, i+1, size) == True):
+                    return True
+            i += 1
+        #print("word", word, "s_index", s_index)
+        return False
+
+    def wordbreak_with_split(self, s, wordDict, s_index, e_index, size, matrix):
+        if(s_index > e_index):
+            return True
+        i = s_index
+        k = e_index
+        j = i
+        #print(i,k)
+        word = s[s_index:(e_index + 1)]
+        #print(word)
+        if(matrix[i][k] == 1):
+            return True
+        if(word in wordDict):
+            matrix[i][k] = 1
+            #print(i, j, k, matrix[i][k])
+            return True
+
+        while(j < k):
+            status = self.wordbreak_with_split(s, wordDict, i, j, size, matrix)
+            if(status == False):
+                j += 1
+                continue
+            j += 1
+            status = self.wordbreak_with_split(s, wordDict, j, k, size, matrix)
+            if(status == True):
+                matrix[i][k] = 1
+                #print(i, j, k, matrix[i][k])
+                return True
+        return False
+            
+
+
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        size = len(s)
+        #approach-1
+        return self.wordbreak_with_start_index(s, wordDict, 0, size)
+
+        #approach-2
+        matrix = [[0 for i in range(size)] for j in range(size)]
+        #print(matrix)
+        status = self.wordbreak_with_split(s, wordDict, 0, size-1, size, matrix)
+        #print(matrix)
+        return status
+
+
+
+        
