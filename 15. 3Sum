@@ -1,0 +1,46 @@
+'''
+Need optimization. Test case 312/314 failed with time limit error
+https://leetcode.com/problems/3sum/?envType=problem-list-v2&envId=oizxjoit
+'''
+class Solution:
+    def find_pairs(self, nums, s_index, e_index, val):
+        pairs = []
+        while(s_index < e_index):
+            l_val = nums[s_index]
+            r_val = nums[e_index]
+            #print(s_index, e_index, l_val, r_val)
+            if(l_val + r_val == val):
+                pairs.append([l_val, r_val])
+                s_index += 1
+            elif(l_val + r_val < val):
+                s_index += 1
+            else:
+                e_index -= 1
+        #print(pairs)
+        return pairs
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        size = len(nums)
+        sorted_nums = sorted(nums)
+        #print(sorted_nums)
+        s_index = 0
+        e_index = size - 1
+        triplets = []
+        while(s_index <= e_index - 2):
+            val = sorted_nums[s_index]
+            if(val > 0):
+                break
+            pair_val = -1 * sorted_nums[s_index]   
+            pairs = self.find_pairs(sorted_nums, s_index + 1, e_index, pair_val)
+            #print(s_index, e_index, val, pair_val, pairs)
+            if(len(pairs) == 0):
+                s_index += 1
+                continue
+            for pair in pairs:
+                triplet = [val, pair[0], pair[1]]
+                if triplet not in triplets:
+                    triplets.append(triplet)
+            s_index += 1
+        #print(triplets)
+        return(triplets)
+
